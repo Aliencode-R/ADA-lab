@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+#define int long long
 void merge(vector<int> &arr, int start, int end)
 {
     // here we are first making a temp array(v)
@@ -59,43 +59,55 @@ void mergeSort(vector<int> &arr, int start, int end)
     merge(arr, start, end);
 }
 
-int main()
+int32_t main()
 {
-
-    int n;
-    cin >> n;
+    int n = 50000;
     vector<int> v(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> v[i];
+    cout << "Menu " << endl;
+
+    cout << "1. Enter 1 for best case. " << endl;
+    cout << "2. Enter 2 for average case. " << endl;
+    cout << "3. Enter 3 for worst case. " << endl;
+    cout << "4. Enter -1 to exit. " << endl;
+
+    int t;
+    while(cin >> t) {
+        if(t == -1) break;
+        if(t == 1) {
+            for(int i = 0; i < n; i++){
+                v[i] = i;
+            }
+         
+        }
+        else if(t == 2) {
+            for(int i = 0; i < n; i++) {
+                v[i] = rand() % 100000;
+            }
+        }
+        else if(t == 3) {
+            int val = 1;
+            for(int i = 0; i < n/2; i++) {
+                v[i] = val;
+                val += 2;
+            }
+            val = 0;
+            for(int i = n/2; i < n; i++) {
+                v[i] = val;
+                val += 2;
+            }
+        }
+
+        clock_t start = clock();
+        // for(auto x : v) cout << x << " ";
+        mergeSort(v, 0, v.size() - 1);
+        clock_t end = clock();
+        cout << endl;
+        cout << double(end - start) << "ms" << endl;
     }
-    cout << endl;
-    mergeSort(v, 0, v.size() - 1);
-    for (auto x : v)
-        cout << x << " ";
-
-    // cout << "Menu " << endl;
-
-    // cout << "1. Enter 1 for best case. " << endl;
-    // cout << "2. Enter 2 for average case. " << endl;
-    // cout << "3. Enter 3 for worst case. " << endl;
-    // cout << "4. Enter -1 to exit. " << endl;
-
-    // int t;
-    // while(cin >> t) {
-    //     if(t == -1) break;
-    //     int n = 20000;
-    //     if(t == 1) {
-
-    //     }
-    //     else if(t == 2) {
-
-    //     }
-    //     else if(t == 3) {
-
-    //     }
-
-    // }
 
     return 0;
 }
+// n = 20000
+// best case: 19 19 18
+// average case: 20 20 21 
+// worst case: 20 20 20 

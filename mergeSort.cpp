@@ -97,10 +97,10 @@ int32_t main()
             }
         }
 
-        clock_t start = clock();
+        time_t start = clock();
         // for(auto x : v) cout << x << " ";
         mergeSort(v, 0, v.size() - 1);
-        clock_t end = clock();
+        time_t end = clock();
         cout << endl;
         cout << double(end - start) << "ms" << endl;
     }
